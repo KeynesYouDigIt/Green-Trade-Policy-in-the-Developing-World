@@ -1,0 +1,14 @@
+Type 'q()' to quit R.
+
+library(sqldf)
+setwd("C:/Users/Vince/Google Drive/Sewalk papers/II - Data Experimintation with BCAs/Regressions and data/_R_LA/Cleand_Data_LA")
+library (plm)
+dat = read.csv("LA_P_yoy.csv")
+attach(dat)
+Y = cbind(dif.yoy)
+X = cbind(Total.Inv, Ind_GDP, Forestkm, HDI)
+pdat = plm.data(dat, index=c("c", "y"))
+sqldf("SELECT * FROM pdat")
+
+##note the quotation marks specifying a string!
+sqldf("SELECT * FROM pdat WHERE c = 'Brazil'")

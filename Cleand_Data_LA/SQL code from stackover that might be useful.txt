@@ -1,0 +1,13 @@
+SELECT * FROM pdat WHERE c = Brazil
+
+
+##conditionals not yet adjusted to pdat
+SELECT name, population, area
+FROM
+(SELECT
+     name, population, area,
+     CASE WHEN population > 250000000 THEN 1 ELSE 0 END AS IsBigPop,
+     CASE WHEN area > 3000000 THEN 1 ELSE 0 END AS IsBigArea
+   FROM world
+) DerivedWorld
+WHERE (IsBigPop = 1 OR IsBigArea = 1) AND NOT (IsBigPop = 1 AND IsBigArea = 1);

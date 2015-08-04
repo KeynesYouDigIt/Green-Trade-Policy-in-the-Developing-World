@@ -1,0 +1,14 @@
+> library (plm)
+Loading required package: Formula
+> dat = read.csv("LA_P_yoy.csv")
+> attach(dat)
+> str(dat)
+> Y = cbind(dif.yoy)
+> X = cbind(Total.Inv, Ind_GDP, Forestkm, HDI)
+> pdat = plm.data(dat, index=c("c", "y"))
+> reggie = plm(Y ~ X, data=pdat, model= "within")
+> summary(reggie)
+> phtest(reggie, rreggie)
+> preggie = plm(Y ~ X, data=pdat, model= "pooling")
+> plmtest(preggie, type=c("bp"))
+> dat
